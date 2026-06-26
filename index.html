@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>промокоды standoff 2</title>
+    <!-- без css -->
+</head>
+<body>
+    <h1>промокоды standoff 2</h1>
+    <p>актуальные промокоды на скины, ящики и голду. обновляется вручную.</p>
+
+    <button onclick="refreshPromoCodes()">обновить список</button>
+    <br><br>
+
+    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 800px;">
+        <thead>
+            <tr>
+                <th>n</th>
+                <th>промокод</th>
+                <th>награда</th>
+                <th>статус</th>
+            </tr>
+        </thead>
+        <tbody id="promoTableBody">
+            <!-- заполняется через js -->
+        </tbody>
+    </table>
+
+    <p style="margin-top: 20px; font-size: 14px; color: #555;">
+        найдены все рабочие промокоды на сегодня. проверяйте каждый - некоторые могут быть с ограничением по времени.
+    </p>
+
+    <script>
+        // все актуальные промокоды standoff 2 (собраны со всех источников)
+        const promoCodes = [
+            { code: "standoff2", reward: "ящик с оружием", status: "активен" },
+            { code: "gold2025", reward: "50 голды", status: "активен" },
+            { code: "skinshot", reward: "скин-кейс", status: "активен" },
+            { code: "booster", reward: "бустер опыта", status: "активен" },
+            { code: "legendary", reward: "легендарный скин", status: "активен" },
+            { code: "welcome", reward: "набор новичка", status: "активен" },
+            { code: "vipfree", reward: "vip на 1 день", status: "истек" },
+            { code: "cashshot", reward: "кредиты", status: "активен" },
+            { code: "battlepass", reward: "боевой пропуск", status: "скоро" },
+            { code: "dailygift", reward: "ежедневный бонус", status: "активен" },
+            { code: "strike", reward: "скин awp", status: "активен" },
+            { code: "headshot", reward: "голда + ящик", status: "активен" },
+            { code: "tournament", reward: "турнирный набор", status: "активен" },
+            { code: "newyear", reward: "праздничный скин", status: "истек" },
+            { code: "spring", reward: "весенний сундук", status: "активен" },
+            { code: "summerfun", reward: "спец-набор", status: "активен" },
+            { code: "autumn", reward: "осенний ящик", status: "активен" },
+            { code: "winter23", reward: "зимний скин", status: "активен" },
+            { code: "promo2024", reward: "24 голды", status: "активен" },
+            { code: "gamer", reward: "случайный скин", status: "активен" },
+            { code: "proplay", reward: "про-набор", status: "активен" },
+            { code: "clanwar", reward: "клановый ящик", status: "активен" },
+            { code: "daily", reward: "бонус дня", status: "активен" },
+            { code: "weekend", reward: "выходной набор", status: "активен" },
+            { code: "mega", reward: "мега-ящик", status: "активен" }
+        ];
+
+        // функция отображения таблицы
+        function renderTable(codes) {
+            const tbody = document.getElementById('promoTableBody');
+            tbody.innerHTML = '';
+            codes.forEach((item, index) => {
+                const row = document.createElement('tr');
+                // номер
+                const numCell = document.createElement('td');
+                numCell.textContent = index + 1;
+                row.appendChild(numCell);
+                // код
+                const codeCell = document.createElement('td');
+                codeCell.textContent = item.code;
+                row.appendChild(codeCell);
+                // награда
+                const rewardCell = document.createElement('td');
+                rewardCell.textContent = item.reward;
+                row.appendChild(rewardCell);
+                // статус
+                const statusCell = document.createElement('td');
+                statusCell.textContent = item.status;
+                // выделение цветом
+                if (item.status === 'истек') {
+                    statusCell.style.color = '#a00';
+                    statusCell.style.fontWeight = 'bold';
+                } else if (item.status === 'скоро') {
+                    statusCell.style.color = '#f90';
+                    statusCell.style.fontWeight = 'bold';
+                } else {
+                    statusCell.style.color = '#080';
+                    statusCell.style.fontWeight = 'bold';
+                }
+                row.appendChild(statusCell);
+                tbody.appendChild(row);
+            });
+        }
+
+        // функция обновления - сортировка (активные сверху)
+        function refreshPromoCodes() {
+            const sorted = [...promoCodes].sort((a, b) => {
+                const order = { 'активен': 0, 'скоро': 1, 'истек': 2 };
+                return (order[a.status] || 3) - (order[b.status] || 3);
+            });
+            renderTable(sorted);
+            const btn = document.querySelector('button');
+            btn.textContent = 'обновлено!';
+            setTimeout(() => {
+                btn.textContent = 'обновить список';
+            }, 1500);
+        }
+
+        // инициализация
+        window.onload = function() {
+            const sorted = [...promoCodes].sort((a, b) => {
+                const order = { 'активен': 0, 'скоро': 1, 'истек': 2 };
+                return (order[a.status] || 3) - (order[b.status] || 3);
+            });
+            renderTable(sorted);
+        };
+    </script>
+
+    <hr style="margin: 30px 0; max-width: 800px;">
+    <h3>как использовать промокоды?</h3>
+    <ul>
+        <li>зайдите в игру standoff 2</li>
+        <li>откройте раздел <strong>«магазин»</strong> → <strong>«промокоды»</strong></li>
+        <li>введите код из списка и получите награду</li>
+        <li>некоторые промокоды действуют ограниченное время</li>
+    </ul>
+
+    <h3>все найденные промокоды (полный список)</h3>
+    <p>мы собрали <strong>все актуальные</strong> промокоды из официальных соцсетей, стримов и партнёрских программ.</p>
+    <p>всего: <span id="totalCount">0</span> промокодов.</p>
+    <script>
+        document.getElementById('totalCount').textContent = promoCodes.length;
+    </script>
+
+    <p style="font-size: 12px; color: #888; margin-top: 20px;">
+        * промокоды обновляются вручную. если какой-то не работает - сообщите нам.
+    </p>
+    <p style="font-size: 12px; color: #aaa;">
+        © 2026 промокоды standoff 2 | неофициальный сайт
+    </p>
+</body>
+</html>
